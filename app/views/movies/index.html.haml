@@ -4,9 +4,15 @@
 %table#movies
   %thead
     %tr
-      %th#movie_title_header=link_to 'Movie Title',:sort=>'title'
+      -if params[:sort]=='title'
+        %th#movie_title_header.hilite=link_to 'Movie Title',:sort=>'title'
+      -else
+        %th#movie_title_header=link_to 'Movie Title',:sort=>'title'
       %th Rating
-      %th#release_date_header=link_to 'Release Date',:sort=>'release_date'
+      -if params[:sort]=='release_date'
+        %th#release_date_header.hilite=link_to 'Release Date',:sort=>'release_date'
+      -else
+        %th#release_date_header=link_to 'Release Date',:sort=>'release_date'
       %th More Info
   %tbody
     - @movies.each do |movie|
