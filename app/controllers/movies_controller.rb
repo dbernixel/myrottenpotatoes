@@ -7,8 +7,9 @@ class MoviesController < ApplicationController
   end
 
   def index
+    @current_rating_selected=params[:ratings].keys
     @all_ratings=Movie.possible_ratings
-    @movies = Movie.order(params[:sort])
+    @movies = Movie.order(params[:sort]).where(:rating=>@current_rating_selected)
   end
 
   def new
